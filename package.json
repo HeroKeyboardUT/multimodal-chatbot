@@ -1,0 +1,14 @@
+{
+  "name": "ii-assignment",
+  "version": "1.0.0",
+  "description": "This project is a lightweight chat application built with Next.js for the frontend and FastAPI for the backend. It supports multi-turn conversations, image uploads, and CSV data interactions.",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd backend && pip install -r requirements.txt && cd ../frontend && npm install",
+    "start": "concurrently \"cd backend && uvicorn main:app --reload\" \"cd frontend && npm run dev\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
