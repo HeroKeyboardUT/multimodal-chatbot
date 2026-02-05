@@ -42,6 +42,33 @@
 
 ---
 
+## My Thoughts on Building Neural Chat
+
+Building Neural Chat has been an exciting journey of integrating advanced AI capabilities into a user-friendly interface. Leveraging the power of Llama 4 Scout through Groq API allowed me to create a versatile assistant capable of handling diverse inputs like text, images, and CSV data for free.
+
+The challenge was not only in implementing these features but also in ensuring a seamless user experience with real-time streaming and context-aware responses. This project has deepened my understanding of AI technologies and web development, although the code may not be perfect, still hard to scale it up because of my limited experience but I can say that I have learned a lot through this process and I'm excited to continue.
+
+**P/S:** I spent more than 10 hours on this (including learning new techniques).
+
+---
+
+## Demo Images
+
+<div align="center">
+  <img src="frontend/public/demo/1.png" alt="Demo 1" width="700"/>
+  <img src="frontend/public/demo/2.png" alt="Demo 2" width="700"/>
+  <img src="frontend/public/demo/3.png" alt="Demo 3" width="700"/>
+  <img src="frontend/public/demo/4.png" alt="Demo 4" width="700"/>
+  <img src="frontend/public/demo/5.png" alt="Demo 5" width="700"/>
+  <img src="frontend/public/demo/6.png" alt="Demo 6" width="700"/>
+</div>
+
+---
+
+## Demo Video
+
+Demo video was uploaded on the main website.
+
 ## Hạn chế kỹ thuật
 
 ### 1. Giới hạn kích thước file
@@ -148,10 +175,10 @@ source venv/bin/activate  # Linux/Mac
 pip install -r requirements.txt
 
 # Tạo file .env
-echo "GROK_API_KEY=your_groq_api_key_here" > .env
+echo "GROQ_API_KEY=your_groq_api_key_here" > .env
 
 # Chạy server
-uvicorn main:app --reload --port 8000
+uvicorn main:app --reload
 ```
 
 ### Frontend
