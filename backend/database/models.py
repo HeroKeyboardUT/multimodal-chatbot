@@ -19,7 +19,15 @@ from datetime import datetime
 import os
 
 # Database URL - SQLite file in the backend directory
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./chat_app.db")
+DATABASE_URL = os.getenv("POSTGRES_URL", "sqlite:///./chat_app.db")
+
+
+if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
+# Nếu không có biến môi trường (chạy local), dùng SQLite
+if not DATABASE_URL:
+    DATABASE_URL = "sqlite:///./local_chat.db"
 
 # Create engine
 engine = create_engine(
