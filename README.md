@@ -4,7 +4,7 @@ A versatile AI chat application with image analysis, CSV data processing, and su
 
 I'm want to extend with more features like RAG (Graph RAG for chating with Arxiv Paper), Chat with PDF, AI hunger Game (for fun),.. but I'm currently learning more.
 
-I receive this assignment on Monday and manage to finish it before sunday.
+I received this assignment on Monday and manage to finish it before sunday.
 
 Here is the deployed website.
 
@@ -64,7 +64,7 @@ Building Neural Chat has been an exciting journey of integrating advanced AI cap
 
 The challenge was not only in implementing these features but also in ensuring a seamless user experience with real-time streaming and context-aware responses. This project has deepened my understanding of AI technologies and web development. Although the code may not be perfect and is still hard to scale up due to my limited experience, I can say that I have learned a lot through this process and I'm excited to continue.
 
-**P/S:** I spent more than 10 hours on this (including learning new techniques).
+**P/S:** I spent more than 10 hours (10-15h) on this (including learning new techniques).
 
 ---
 
@@ -99,19 +99,7 @@ The challenge was not only in implementing these features but also in ensuring a
 | **Image** | 10 MB | Images are encoded as Base64 (increases size by ~33%) and stored in the database. Large images slow down API response and use more memory. |
 | **CSV**   | 5 MB  | CSV is parsed to JSON and kept in memory. Large files may cause timeout or out-of-memory errors.                                           |
 
-### 2. Context Not Shared Across Tabs
-
-**Issue**: Opening a new browser tab will not show the context (active image/CSV) from the previous session.
-
-**Reason**:
-
-- Session ID is stored in the browser's `localStorage`
-- `localStorage` is **separate for each tab/origin**
-- When opening a new tab, the frontend creates a new session or cannot find the old session in localStorage
-
-**Potential Solution**: Use URL params or cookies to share session across tabs.
-
-### 3. Message History
+### 2. Message History
 
 | Aspect                  | Value              | Reason                                                                                           |
 | ----------------------- | ------------------ | ------------------------------------------------------------------------------------------------ |
@@ -119,15 +107,18 @@ The challenge was not only in implementing these features but also in ensuring a
 | **Messages sent to AI** | 15 most recent     | LLM API token limit (~8K-32K tokens). Sending too much history exceeds the limit and costs more. |
 | **UI display**          | All                | Frontend loads all from localStorage                                                             |
 
-### 4. Image Limitations
+### 3. Image Limitations
 
-| Aspect                 | Value               | Reason                                                         |
-| ---------------------- | ------------------- | -------------------------------------------------------------- |
-| **Images per session** | 1 active image      | Simplifies context management. New image replaces the old one. |
-| **Formats**            | PNG, JPG, WEBP, GIF | Popular formats supported by LLM vision                        |
-| **Storage**            | Base64 in SQLite    | No need for file system, easy to backup/migrate                |
+| Aspect      | Value               | Reason                                          |
+| ----------- | ------------------- | ----------------------------------------------- |
+| **Formats** | PNG, JPG, WEBP, GIF | Popular formats supported by LLM vision         |
+| **Storage** | Base64 in SQLite    | No need for file system, easy to backup/migrate |
 
-### 5. CSV Limitations
+### 4. CSV Limitations
+
+CSV file must be easy for pd to parse, similar to the file given in demo.
+CSV can't be sent in the same message with text, because of some mistake in
+the database and backend design.
 
 | Aspect              | Value          | Reason                             |
 | ------------------- | -------------- | ---------------------------------- |
@@ -135,7 +126,7 @@ The challenge was not only in implementing these features but also in ensuring a
 | **Rows in context** | 1000 rows      | Limit memory and tokens sent to AI |
 | **Encoding**        | UTF-8, Latin-1 | Most common encodings              |
 
-### 6. AI Model
+### 5. AI Model
 
 | Model                 | Purpose              | Limitation          |
 | --------------------- | -------------------- | ------------------- |
