@@ -23,7 +23,12 @@ DATABASE_URL = os.getenv("POSTGRES_URL")
 # Logic xử lý connection string và arguments
 connect_args = {}
 
-if not DATABASE_URL:
+if DATABASE_URL:
+    # Fix cái vụ postgres:// cũ rích nếu có
+    if DATABASE_URL.startswith("postgres://"):
+        DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+    
+else:
     # Nếu chạy local không có env thì dùng SQLite
     DATABASE_URL = "sqlite:///./chat_app.db"
     # Chỉ SQLite mới cần cái này
@@ -35,6 +40,9 @@ engine = create_engine(
     connect_args=connect_args
 )
 
+Base = declarative_base()
+
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # ============ DATABASE MODELS ============
 

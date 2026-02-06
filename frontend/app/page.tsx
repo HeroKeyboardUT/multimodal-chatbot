@@ -23,6 +23,7 @@ import {
   Layers,
   GitBranch,
   Check,
+  ArrowDown,
 } from "lucide-react";
 
 // Demo chat message component
@@ -77,18 +78,11 @@ export default function LandingPage() {
   const [activeDemo, setActiveDemo] = useState<"chat" | "image" | "csv">(
     "chat",
   );
-  const [activeSection, setActiveSection] = useState(0);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
-  const sectionNames = [
-    "Home",
-    "Features",
-    "Demo",
-    "Tech Stack",
-    "Get Started",
-  ];
+
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
@@ -101,32 +95,6 @@ export default function LandingPage() {
     }
   }, []);
 
-  // Intersection observer for active section tracking
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-
-    sectionRefs.current.forEach((section, index) => {
-      if (!section) return;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
-              setActiveSection(index);
-            }
-          });
-        },
-        { threshold: 0.5 },
-      );
-
-      observer.observe(section);
-      observers.push(observer);
-    });
-
-    return () => {
-      observers.forEach((observer) => observer.disconnect());
-    };
-  }, []);
 
   const toggleTheme = () => {
     setIsDark(!isDark);
@@ -405,14 +373,18 @@ export default function LandingPage() {
                 </div>
               </div>
             </div>
+
+            {/*Scroll Down to see more */}
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+              <ArrowDown className="w-6 h-6 text-muted-foreground animate-bounce" />
+            </div>
           </div>
         </div>
       </section>
+
       {/* Section 5: Demo and my words on it
        */}
-
-      <section className=" flex flex-col items-center justify-center py-20 px-6">
-        {/* My Words */}
+      <section className="flex flex-col items-center border-y border-border justify-center py-20 px-6">
         <div className="flex flex-row">
           <div className="max-w-4xl mx-auto pb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -452,7 +424,9 @@ export default function LandingPage() {
             </video>
           </div>
         </div>
+      </section>
 
+      <section className=" flex flex-col items-center justify-center py-20 px-6">
         {/* Demo Pic */}
         <div className="max-w mx-auto text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 pb-4">
@@ -771,7 +745,7 @@ export default function LandingPage() {
             </div>
 
             <div className="text-sm text-muted-foreground">
-              2025 Neural Chat
+              2026 Neural Chat
             </div>
           </div>
         </footer>
