@@ -2,6 +2,12 @@
 
 A versatile AI chat application with image analysis, CSV data processing, and support for various rich content formats.
 
+I'm want to extend with more features like RAG (Graph RAG for chating with Arxiv Paper), Chat with PDF, AI hunger Game (for fun),.. but I'm currently learning more.
+
+I receive this assignment on Monday and manage to finish it before sunday.
+
+Here is the deployed website.
+
 Link Deploy: https://multimodal-chatbot-one.vercel.app
 
 - Frontend: Vercel
@@ -9,6 +15,8 @@ Link Deploy: https://multimodal-chatbot-one.vercel.app
 - Backend: Railway
 
 - Demo Materials: https://github.com/HeroKeyboardUT/multimodal-chatbot/tree/main/frontend/public/demo
+
+- Demo CSV Link: https://raw.githubusercontent.com/HeroKeyboardUT/multimodal-chatbot/main/frontend/public/demo/Processed_GPU_Data.csv
 
 ## Completed Features
 
@@ -75,7 +83,12 @@ The challenge was not only in implementing these features but also in ensuring a
 
 ## Demo Video
 
-Demo video was uploaded on the main website.
+[Watch Demo Video](https://multimodal-chatbot-one.vercel.app/demo/clip.mp4)
+
+<!-- HTML video tag (may not play on GitHub, but works on some platforms) -->
+<video src="https://multimodal-chatbot-one.vercel.app/demo/clip.mp4" controls width="600" poster="https://multimodal-chatbot-one.vercel.app/demo/1.png">
+  Your browser does not support the video tag.
+</video>
 
 ## Technical Limitations
 
