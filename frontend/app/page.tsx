@@ -408,12 +408,15 @@ export default function LandingPage() {
               Demo materials are included in the github frontend/public/demo
               folder.
             </p>
-            <a
-              href="https://github.com/HeroKeyboardUT/multimodal-chatbot/tree/main/frontend/public/demo"
-              className="bg-amber-50 text-black border border-border rounded-2xl px-4 mt-4 py-2 inline-block"
-            >
-              View on GitHub
-            </a>
+            <div className="flex pl-4 flex-wrap gap-4 mb-8">
+              <a
+                href="https://github.com/HeroKeyboardUT/multimodal-chatbot/tree/main/frontend/public/demo"
+                className="px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/25 flex items-center gap-2"
+              >
+                View Demo Materials
+                <ArrowRight className="w-5 h-5" />
+              </a>
+            </div>
             <hr className="my-8 border-border" />
           </div>
 
@@ -425,7 +428,7 @@ export default function LandingPage() {
                   <video
                     src="/demo/clip.mp4"
                     controls
-                    className="w-full h-auto rounded-xl shadow-lg border border-border"
+                    className="w-full h-auto"
                     poster="/demo/1.png"
                   >
                     Your browser does not support the video tag.
