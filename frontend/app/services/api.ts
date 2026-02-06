@@ -154,7 +154,7 @@ export const csvAPI = {
 
   // Load CSV from URL
   loadFromURL: async (data: CSVFromURLRequest): Promise<UploadCSVResponse> => {
-    const response = await api.post("/api/csv/from-url", {
+    const response = await api.post("/api/csv/url", {
       url: data.url,
       session_id: data.session_id,
     });
