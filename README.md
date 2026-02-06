@@ -22,7 +22,7 @@ Link Deploy: https://multimodal-chatbot-one.vercel.app
 
 I utilize GitHub Copilot and Gemini as my primary coding assistants.
 
-- Architecture & Learning: I used AI to analyze open-source patterns (specifically studying the architecture of ii-agent) to understand how to structure the framework effectively.
+- Architecture & Learning: I used AI to analyze open-source patterns (specifically studying the architecture of ii-agent) to understand how to structure the framework effectively and learning new technical aspects in chatbot.
 
 - Design & Logic: I personally designed the UI layout and mapped out the data flow between the frontend and backend. I also spent time researching and experimenting with the more Chatbot APIs to ensure smooth integration.
 
