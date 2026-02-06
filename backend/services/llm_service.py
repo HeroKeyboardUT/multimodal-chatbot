@@ -10,7 +10,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-
 class LLMService:
     def __init__(self):
         api_key = os.getenv("GROQ_API_KEY")
