@@ -32,7 +32,6 @@ from schemas.models import (
 
 router = APIRouter(prefix="/api/chat", tags=["Chat"])
 
-
 # ============ STREAMING ENDPOINT ============
 
 @router.post("/stream")
@@ -102,6 +101,12 @@ async def send_message_stream(request: ChatRequest):
         "Cache-Control": "no-cache",
         "Connection": "keep-alive",
         "X-Accel-Buffering": "no",
+
+        # CORS headers
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": "true",
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Allow-Methods": "*",
         }
     )
 
