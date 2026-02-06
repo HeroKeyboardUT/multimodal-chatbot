@@ -2,7 +2,6 @@
 Chat API Routes
 Handles multi-turn conversations with optional image/CSV context
 """
-import os
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import StreamingResponse
 from typing import Optional
@@ -33,10 +32,6 @@ from schemas.models import (
 
 router = APIRouter(prefix="/api/chat", tags=["Chat"])
 
-frontend_url = os.getenv(
-    "FRONTEND_URL",
-    "localhost:3000"
-).rstrip("/")
 
 # ============ STREAMING ENDPOINT ============
 
@@ -107,12 +102,6 @@ async def send_message_stream(request: ChatRequest):
         "Cache-Control": "no-cache",
         "Connection": "keep-alive",
         "X-Accel-Buffering": "no",
-
-        # CORS headers
-        "Access-Control-Allow-Origin": frontend_url,
-        "Access-Control-Allow-Credentials": "true",
-        "Access-Control-Allow-Headers": "*",
-        "Access-Control-Allow-Methods": "*",
         }
     )
 
