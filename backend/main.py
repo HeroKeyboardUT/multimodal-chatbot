@@ -63,6 +63,7 @@ app.add_middleware(
         "http://localhost:5173",      # Vite default
         "http://127.0.0.1:3000",
         "http://127.0.0.1:5173",
+        "https://multimodal-chatbot-one.vercel.app",  # Vercel deployment
         os.getenv("FRONTEND_URL", "")  # Production frontend URL
     ],
     allow_credentials=True,
