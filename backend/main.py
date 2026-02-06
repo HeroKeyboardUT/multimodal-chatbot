@@ -111,14 +111,14 @@ async def api_health():
     return {"status": "ok"}
 
 
-if __name__ == "__main__":
-    # Get port from environment or default to 8000
-    port = int(os.getenv("PORT", 8000))
+# if __name__ == "__main__":
+#     # Get port from environment or default to 8000
+#     port = int(os.getenv("PORT", 8000))
     
-    uvicorn.run(
-        "main:app",
-        port=port,
-        reload=True,  # Auto-reload on code changes
-        log_level="info"
-    )
+#     uvicorn.run(
+#         "main:app",
+#         port=port,
+#         reload=True,  # Auto-reload on code changes
+#         log_level="info"
+#     )
 
