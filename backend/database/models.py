@@ -18,28 +18,22 @@ from sqlalchemy.orm import sessionmaker, relationship
 from datetime import datetime
 import os
 
-# Database URL - SQLite file in the backend directory
-DATABASE_URL = os.getenv("POSTGRES_URL", "sqlite:///./chat_app.db")
+DATABASE_URL = os.getenv("POSTGRES_URL")
 
+# Logic xử lý connection string và arguments
+connect_args = {}
 
-if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
-    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
-
-# Nếu không có biến môi trường (chạy local), dùng SQLite
 if not DATABASE_URL:
-    DATABASE_URL = "sqlite:///./local_chat.db"
+    # Nếu chạy local không có env thì dùng SQLite
+    DATABASE_URL = "sqlite:///./chat_app.db"
+    # Chỉ SQLite mới cần cái này
+    connect_args = {"check_same_thread": False}
 
-# Create engine
+# Create engine chuẩn chỉ
 engine = create_engine(
     DATABASE_URL,
-    connect_args={"check_same_thread": False}  # Needed for SQLite
+    connect_args=connect_args
 )
-
-# Create session factory
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-# Base class for models
-Base = declarative_base()
 
 
 # ============ DATABASE MODELS ============
