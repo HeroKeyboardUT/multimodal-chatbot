@@ -1,44 +1,52 @@
 # Neural Chat - AI Chat Application
 
-Ứng dụng chat AI đa năng với khả năng phân tích hình ảnh, xử lý dữ liệu CSV, và hỗ trợ nhiều định dạng nội dung phong phú.
+A versatile AI chat application with image analysis, CSV data processing, and support for various rich content formats.
 
-## Tính năng đã hoàn thành
+Link Deploy: https://multimodal-chatbot-one.vercel.app
 
-### 1. Chat với AI (Streaming)
+- Frontend: Vercel
 
-- **Multi-turn conversation**: Hỗ trợ hội thoại nhiều lượt với ngữ cảnh được duy trì
-- **Streaming response**: Phản hồi real-time, hiển thị từng ký tự khi AI trả lời
-- **Session management**: Quản lý nhiều phiên chat, lưu trữ lịch sử
+- Backend: Railway
+
+- Demo Materials: https://github.com/HeroKeyboardUT/multimodal-chatbot/tree/main/frontend/public/demo
+
+## Completed Features
+
+### 1. Chat with AI (Streaming)
+
+- **Multi-turn conversation**: Supports multi-turn conversations with maintained context
+- **Streaming response**: Real-time responses, displaying each character as the AI replies
+- **Session management**: Manage multiple chat sessions, store chat history
 
 ### 2. Markdown Rendering
 
-- **Syntax Highlighting**: Code blocks với highlight theo ngôn ngữ (Python, JavaScript, TypeScript, etc.)
-- **LaTeX Math**: Hỗ trợ công thức toán học với KaTeX (`$inline$` và `$$block$$`)
-- **Mermaid Diagrams**: Render sơ đồ flowchart, sequence diagram
-- **HTML Preview**: Xem trước HTML với nút toggle
-- **SVG Rendering**: Hiển thị trực tiếp SVG
-- **JSON Viewer**: Format và highlight JSON data
-- **Copy Button**: Nút copy code nhanh cho mỗi code block
+- **Syntax Highlighting**: Code blocks with language-specific highlighting (Python, JavaScript, TypeScript, etc.)
+- **LaTeX Math**: Supports mathematical formulas with KaTeX (`$inline$` and `$$block$$`)
+- **Mermaid Diagrams**: Render flowcharts and sequence diagrams
+- **HTML Preview**: Preview HTML with a toggle button
+- **SVG Rendering**: Directly display SVG
+- **JSON Viewer**: Format and highlight JSON data
+- **Copy Button**: Quick copy button for each code block
 
-### 3. Upload & Phân tích ảnh
+### 3. Image Upload & Analysis
 
-- **Upload ảnh**: Hỗ trợ PNG, JPG, WEBP, GIF
-- **Paste ảnh**: Dán ảnh trực tiếp từ clipboard (Ctrl+V)
-- **Vision AI**: Phân tích nội dung ảnh với Llama 4 Scout (Groq)
+- **Image upload**: Supports PNG, JPG, WEBP, GIF
+- **Paste image**: Paste images directly from clipboard (Ctrl+V)
+- **Vision AI**: Analyze image content with Llama 4 Scout (Groq)
 
-### 4. Upload & Phân tích CSV
+### 4. CSV Upload & Analysis
 
-- **Upload CSV**: Tải file CSV lên để phân tích
-- **Load từ URL**: Tải CSV từ đường dẫn web
-- **Auto-analysis**: Tự động tính toán thống kê (mean, median, min, max, std)
-- **Data context**: AI có thể trả lời câu hỏi về dữ liệu CSV
+- **Upload CSV**: Upload CSV files for analysis
+- **Load from URL**: Load CSV from a web link
+- **Auto-analysis**: Automatically calculate statistics (mean, median, min, max, std)
+- **Data context**: AI can answer questions about CSV data
 
 ### 5. UI/UX
 
-- **Dark/Light mode**: Chuyển đổi theme sáng/tối
-- **Responsive design**: Tương thích mobile và desktop
-- **Session sidebar**: Quản lý nhiều cuộc hội thoại
-- **Clean monochrome design**: Giao diện tối giản, chuyên nghiệp
+- **Dark/Light mode**: Switch between light and dark themes
+- **Responsive design**: Compatible with both mobile and desktop
+- **Session sidebar**: Manage multiple chat sessions
+- **Clean monochrome design**: Minimalist, professional interface
 
 ---
 
@@ -46,7 +54,7 @@
 
 Building Neural Chat has been an exciting journey of integrating advanced AI capabilities into a user-friendly interface. Leveraging the power of Llama 4 Scout through Groq API allowed me to create a versatile assistant capable of handling diverse inputs like text, images, and CSV data for free.
 
-The challenge was not only in implementing these features but also in ensuring a seamless user experience with real-time streaming and context-aware responses. This project has deepened my understanding of AI technologies and web development, although the code may not be perfect, still hard to scale it up because of my limited experience but I can say that I have learned a lot through this process and I'm excited to continue.
+The challenge was not only in implementing these features but also in ensuring a seamless user experience with real-time streaming and context-aware responses. This project has deepened my understanding of AI technologies and web development. Although the code may not be perfect and is still hard to scale up due to my limited experience, I can say that I have learned a lot through this process and I'm excited to continue.
 
 **P/S:** I spent more than 10 hours on this (including learning new techniques).
 
@@ -69,67 +77,67 @@ The challenge was not only in implementing these features but also in ensuring a
 
 Demo video was uploaded on the main website.
 
-## Hạn chế kỹ thuật
+## Technical Limitations
 
-### 1. Giới hạn kích thước file
+### 1. File Size Limits
 
-| Loại file | Giới hạn | Lý do                                                                                                                                 |
-| --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| **Ảnh**   | 10 MB    | Ảnh được encode thành Base64 (tăng ~33% kích thước) và lưu trong database. Ảnh quá lớn sẽ làm chậm API response và tốn bộ nhớ server. |
-| **CSV**   | 5 MB     | CSV được parse thành JSON và giữ trong memory. File lớn có thể gây timeout hoặc out-of-memory.                                        |
+| File Type | Limit | Reason                                                                                                                                     |
+| --------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Image** | 10 MB | Images are encoded as Base64 (increases size by ~33%) and stored in the database. Large images slow down API response and use more memory. |
+| **CSV**   | 5 MB  | CSV is parsed to JSON and kept in memory. Large files may cause timeout or out-of-memory errors.                                           |
 
-### 2. Context không tồn tại ở tab mới
+### 2. Context Not Shared Across Tabs
 
-**Vấn đề**: Mở tab trình duyệt mới sẽ không thấy context (ảnh/CSV đang active) của session cũ.
+**Issue**: Opening a new browser tab will not show the context (active image/CSV) from the previous session.
 
-**Lý do**:
+**Reason**:
 
-- Session ID được lưu trong `localStorage` của trình duyệt
-- `localStorage` là **riêng biệt cho mỗi tab/origin**
-- Khi mở tab mới, frontend tạo session mới hoặc không tìm thấy session cũ trong localStorage
+- Session ID is stored in the browser's `localStorage`
+- `localStorage` is **separate for each tab/origin**
+- When opening a new tab, the frontend creates a new session or cannot find the old session in localStorage
 
-**Giải pháp tiềm năng**: Sử dụng URL params hoặc cookies để share session across tabs.
+**Potential Solution**: Use URL params or cookies to share session across tabs.
 
-### 3. Lịch sử tin nhắn
+### 3. Message History
 
-| Aspect                     | Giá trị              | Lý do                                                                                            |
-| -------------------------- | -------------------- | ------------------------------------------------------------------------------------------------ |
-| **Thời gian lưu trữ**      | Vĩnh viễn (SQLite)   | Database SQLite lưu local, không tự động xóa                                                     |
-| **Số tin nhắn gửi cho AI** | 15 tin nhắn gần nhất | Giới hạn token của LLM API (~8K-32K tokens). Gửi quá nhiều history sẽ vượt limit và tốn chi phí. |
-| **Hiển thị trên UI**       | Tất cả               | Frontend load toàn bộ từ localStorage                                                            |
+| Aspect                  | Value              | Reason                                                                                           |
+| ----------------------- | ------------------ | ------------------------------------------------------------------------------------------------ |
+| **Storage duration**    | Permanent (SQLite) | SQLite database stores locally, does not auto-delete                                             |
+| **Messages sent to AI** | 15 most recent     | LLM API token limit (~8K-32K tokens). Sending too much history exceeds the limit and costs more. |
+| **UI display**          | All                | Frontend loads all from localStorage                                                             |
 
-### 4. Giới hạn ảnh
+### 4. Image Limitations
 
-| Aspect                 | Giá trị             | Lý do                                                        |
-| ---------------------- | ------------------- | ------------------------------------------------------------ |
-| **Số ảnh mỗi session** | 1 ảnh active        | Đơn giản hóa context management. Ảnh mới sẽ thay thế ảnh cũ. |
-| **Định dạng**          | PNG, JPG, WEBP, GIF | Các format phổ biến được LLM vision hỗ trợ                   |
-| **Lưu trữ**            | Base64 trong SQLite | Không cần file system, dễ backup/migrate                     |
+| Aspect                 | Value               | Reason                                                         |
+| ---------------------- | ------------------- | -------------------------------------------------------------- |
+| **Images per session** | 1 active image      | Simplifies context management. New image replaces the old one. |
+| **Formats**            | PNG, JPG, WEBP, GIF | Popular formats supported by LLM vision                        |
+| **Storage**            | Base64 in SQLite    | No need for file system, easy to backup/migrate                |
 
-### 5. Giới hạn CSV
+### 5. CSV Limitations
 
-| Aspect                    | Giá trị        | Lý do                                   |
-| ------------------------- | -------------- | --------------------------------------- |
-| **Số dòng hiển thị**      | 100 dòng đầu   | Giảm payload gửi cho frontend           |
-| **Số dòng trong context** | 1000 dòng      | Giới hạn memory và token khi gửi cho AI |
-| **Encoding**              | UTF-8, Latin-1 | Các encoding phổ biến nhất              |
+| Aspect              | Value          | Reason                             |
+| ------------------- | -------------- | ---------------------------------- |
+| **Displayed rows**  | First 100      | Reduce payload sent to frontend    |
+| **Rows in context** | 1000 rows      | Limit memory and tokens sent to AI |
+| **Encoding**        | UTF-8, Latin-1 | Most common encodings              |
 
-### 6. Model AI
+### 6. AI Model
 
-| Model                 | Mục đích             | Hạn chế                 |
-| --------------------- | -------------------- | ----------------------- |
-| **Llama 4 Scout 17B** | Chat + Vision        | Rate limit của Groq API |
-| **Llama 3.3 70B**     | Fallback (text only) | Không hỗ trợ ảnh        |
+| Model                 | Purpose              | Limitation          |
+| --------------------- | -------------------- | ------------------- |
+| **Llama 4 Scout 17B** | Chat + Vision        | Groq API rate limit |
+| **Llama 3.3 70B**     | Fallback (text only) | No image support    |
 
 ---
 
-## Cấu trúc Project
+## Project Structure
 
 ```
 ii-assignment/
 ├── frontend/                 # Next.js 16 + React 19
 │   ├── app/
-│   │   ├── chat/            # Trang chat chính
+│   │   ├── chat/            # Main chat page
 │   │   ├── components/      # React components
 │   │   ├── services/        # API client
 │   │   └── types/           # TypeScript types
@@ -151,11 +159,127 @@ ii-assignment/
 └── README.md
 ```
 
+## Local Setup Guide
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/ii-assignment.git
+cd ii-assignment
+```
+
 ---
 
-## Hướng dẫn cài đặt
+### 2. Backend Setup
 
-### Yêu cầu
+#### a. Create and Activate Virtual Environment
+
+```bash
+cd backend
+python -m venv venv
+# On Windows:
+venv\Scripts\activate
+# On Linux/Mac:
+source venv/bin/activate
+```
+
+#### b. Install Python Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+#### c. Create `.env` File
+
+Create a file named `.env` in the `backend` folder with the following content:
+
+```
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+- Replace `your_groq_api_key_here` with your actual Groq API key.
+- You can get a free Groq API key at: https://console.groq.com/keys
+
+#### d. Run the Backend Server
+
+```bash
+uvicorn main:app --reload
+```
+
+The backend will be available at: [http://localhost:8000](http://localhost:8000)
+
+---
+
+### 3. Frontend Setup
+
+```bash
+cd ../frontend
+npm install
+```
+
+#### (Optional) Create `.env.local` for Frontend
+
+If you want to customize the API endpoint, create a `.env.local` file in the `frontend` folder:
+
+```
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
+
+- By default, the frontend will call the backend at `http://localhost:8000`.
+
+#### Start the Frontend
+
+```bash
+npm run dev
+```
+
+The frontend will be available at: [http://localhost:3000](http://localhost:3000)
+
+---
+
+#### 4. Start all
+
+At root directory:
+
+```bash
+npm start
+```
+
+---
+
+### 5. Access the App
+
+Open your browser and go to [http://localhost:3000](http://localhost:3000) to use Neural Chat locally.
+
+---
+
+### Troubleshooting
+
+- Make sure both backend and frontend are running.
+- If you see CORS errors, check that `NEXT_PUBLIC_API_URL` in the frontend matches your backend URL.
+- If you get authentication errors, double-check your Groq API key in the backend `.env` file.
+
+---
+
+### Example `.env` Files
+
+**backend/.env**
+
+```
+GROQ_API_KEY=your_groq_api_key_here
+```
+
+**frontend/.env.local** (optional)
+
+```
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
+
+---
+
+## Installation Guide
+
+### Requirements
 
 - Node.js 18+
 - Python 3.10+
@@ -166,18 +290,18 @@ ii-assignment/
 ```bash
 cd backend
 
-# Tạo virtual environment
+# Create virtual environment
 python -m venv venv
 venv\Scripts\activate  # Windows
 source venv/bin/activate  # Linux/Mac
 
-# Cài đặt dependencies
+# Install dependencies
 pip install -r requirements.txt
 
-# Tạo file .env
+# Create .env file
 echo "GROQ_API_KEY=your_groq_api_key_here" > .env
 
-# Chạy server
+# Run server
 uvicorn main:app --reload
 ```
 
@@ -186,14 +310,14 @@ uvicorn main:app --reload
 ```bash
 cd frontend
 
-# Cài đặt dependencies
+# Install dependencies
 npm install
 
-# Chạy development server
+# Run development server
 npm run dev
 ```
 
-Truy cập: http://localhost:3000
+Visit: http://localhost:3000
 
 ---
 

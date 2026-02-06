@@ -82,8 +82,6 @@ export default function LandingPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<(HTMLElement | null)[]>([]);
 
-
-
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "light") {
@@ -95,7 +93,6 @@ export default function LandingPage() {
     }
   }, []);
 
-
   const toggleTheme = () => {
     setIsDark(!isDark);
     if (isDark) {
@@ -105,10 +102,6 @@ export default function LandingPage() {
       document.documentElement.classList.add("dark");
       localStorage.setItem("theme", "dark");
     }
-  };
-
-  const scrollToSection = (index: number) => {
-    sectionRefs.current[index]?.scrollIntoView({ behavior: "smooth" });
   };
 
   const techStack = {
@@ -384,44 +377,100 @@ export default function LandingPage() {
 
       {/* Section 5: Demo and my words on it
        */}
-      <section className="flex flex-col items-center border-y border-border justify-center py-20 px-6">
-        <div className="flex flex-row">
-          <div className="max-w-4xl mx-auto pb-12">
+      <section className="flex flex-col items-center border-y border-border justify-center py-20 px-4 sm:px-6">
+        <div className="flex flex-col lg:flex-row w-full max-w-6xl gap-12">
+          {/* Left: Thoughts & Projects */}
+          <div className="w-full lg:w-1/2 max-w-4xl mx-auto pb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               My Thoughts on Building Neural Chat
             </h2>
-            <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
+            <p className="text-muted-foreground mb-8 max-w-2xl pt-2 mx-auto border-t border-border pt-4">
               Building Neural Chat has been an exciting journey of integrating
               advanced AI capabilities into a user-friendly interface.
               Leveraging the power of Llama 4 Scout through Groq API allowed me
               to create a versatile assistant capable of handling diverse inputs
               like text, images, and CSV data for free.
             </p>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl mx-auto border-b border-border pb-4">
               The challenge was not only in implementing these features but also
               in ensuring a seamless user experience with real-time streaming
               and context-aware responses. This project has deepened my
               understanding of AI technologies and web development, although the
               code may not be perfect, still hard to scale it up because of my
-              limited experience but I can say that i have learned a lot through
+              limited experience but I can say that I have learned a lot through
               this process and I'm excited to continue.
             </p>
-            <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
+            <p className="text-muted-foreground max-w-2xl mx-auto ml-4 my-4 p-4 border-l">
               P/S: I spent more than 10 hours on this (including learning new
               techniques)
             </p>
+            <p className="text-muted-foreground max-w-2xl mx-auto ml-4 my-4 p-4 border-l">
+              Demo materials are included in the github frontend/public/demo
+              folder.
+            </p>
+            <a
+              href="https://github.com/HeroKeyboardUT/multimodal-chatbot/tree/main/frontend/public/demo"
+              className="bg-amber-50 text-black border border-border rounded-2xl px-4 mt-4 py-2 inline-block"
+            >
+              View on GitHub
+            </a>
+            <hr className="my-8 border-border" />
           </div>
 
-          {/* Demo Video */}
-          <div className="max-w-2xl mx-auto pb-12 pl-12">
-            <video
-              src="/demo/clip.mp4"
-              controls
-              className="w-full h-auto rounded-lg shadow-lg"
-              poster="/demo/1.png"
-            >
-              Your browser does not support the video tag.
-            </video>
+          {/* Right: Demo Video */}
+          <div className="w-full lg:w-1/2 max-w-2xl mx-auto pb-12 pl-0 lg:pl-12">
+            <div className="shadow-xl p-6 flex flex-col items-center">
+              <div className="w-full flex flex-col items-center">
+                <div className="relative w-full">
+                  <video
+                    src="/demo/clip.mp4"
+                    controls
+                    className="w-full h-auto rounded-xl shadow-lg border border-border"
+                    poster="/demo/1.png"
+                  >
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <p className="text-lg text-muted-foreground mt-4 text-center font-medium">
+                  Experience Neural Chat in action!
+                </p>
+              </div>
+            </div>
+            <div className="p-5 mt-8 bg-muted/40 w-full">
+              <h3 className="text-lg font-semibold mb-2 text-primary">
+                Explore More Projects
+              </h3>
+              <div className="space-y-4 border-y py-4">
+                <div className="border-l border-border ml-4 px-4 bg-muted/20">
+                  <p className="text-sm text-muted-foreground mb-1 font-medium">
+                    Reinforcement Learning Play Ground
+                  </p>
+                  <a
+                    href="https://digital-duality.vercel.app/rl-playground"
+                    className="text-blue-600 font-medium hover:underline flex items-center gap-2 pl-4"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <GitBranch className="w-4 h-4" />
+                    RL Value-based Algorithm Testing
+                  </a>
+                </div>
+                <div className="border-l border-border ml-4 px-4 bg-muted/20">
+                  <p className="text-sm text-muted-foreground mb-1 font-medium">
+                    Data Crawling:
+                  </p>
+                  <a
+                    href="https://hcmut-cse-internship-crawler-production.up.railway.app/"
+                    className="text-blue-600 font-medium hover:underline flex items-center gap-2 pl-4"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Database className="w-4 h-4" />
+                    Data Crawling from my school website
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -466,7 +515,6 @@ export default function LandingPage() {
                 className="group p-6 border border-border hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 transition-all cursor-pointer"
                 onClick={() => {
                   setActiveDemo(feature.id as "chat" | "image" | "csv");
-                  scrollToSection(2);
                 }}
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
